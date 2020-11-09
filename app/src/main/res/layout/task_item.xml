@@ -20,6 +20,7 @@
         app:cardCornerRadius="7dp">
 
         <RelativeLayout
+            android:id="@+id/relative_layout"
             android:paddingStart="4dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,18 +29,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/colorPrimaryDark"
+
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:id="@+id/task"
+                android:id="@+id/task_from_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingStart="10dp"
                 android:text="@string/task"
-                android:textSize="36dp"
+                android:textSize="36sp"
                 android:maxLines="2"
                 android:paddingEnd="50dp"
                 android:ellipsize="end"
@@ -54,16 +55,6 @@
                 android:background="?android:attr/listChoiceIndicatorMultiple"
                 android:button="@null" />
 
-            <ImageButton
-                android:id="@+id/delete_button"
-                android:layout_below="@+id/checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:src="@android:drawable/ic_delete"
-                android:layout_alignParentEnd="true"
-                android:paddingEnd="20dp"
-                android:layout_marginBottom="5dp"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,11 @@
 package com.udemy_3.daycheckbeta2;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
+
 
     private OnItemClickListener listener;
 
@@ -46,10 +46,10 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
-        Task currentTask = getItem(position);
+        Task currentTask = getItem(position);//le truc parfait
 
         holder.taskName.setText(currentTask.getNameTask());
-
+        holder.relativeLayoutForChange.setBackgroundColor(Color.parseColor(currentTask.getColor()));
     }
 
 
@@ -60,14 +60,18 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
     class TaskHolder extends RecyclerView.ViewHolder {
         private TextView taskName;
         private CheckBox checkBox;
-        private ImageButton imageButton;
+
+        public RelativeLayout relativeLayoutForChange;
+        private String color;
+
 
 
         public TaskHolder(@NonNull View itemView) {
             super(itemView);
-            taskName = itemView.findViewById(R.id.task);
+            taskName = itemView.findViewById(R.id.task_from_row);
             checkBox = itemView.findViewById(R.id.checkbox);
-            imageButton = itemView.findViewById(R.id.delete_button);
+            relativeLayoutForChange = itemView.findViewById(R.id.relative_layout);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

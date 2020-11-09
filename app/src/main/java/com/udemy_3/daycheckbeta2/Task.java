@@ -17,7 +17,19 @@ public class Task {
     private String timeTask;
 
 
+    @ColumnInfo(name ="color_task")
+    private String Color;
+
+
     public Task() {
+    }
+
+    public String getColor() {
+        return Color;
+    }
+
+    public void setColor(String color) {
+        Color = color;
     }
 
     public int getId() {

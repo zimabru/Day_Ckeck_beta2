@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.udemy_3.daycheckbeta2.Task;
 
-@Database(entities ={Task.class}, version =1,exportSchema = false)
+@Database(entities ={Task.class}, version =4,exportSchema = false)
 public abstract class TaskDatabase extends RoomDatabase {
 
     private static TaskDatabase INSTANCE;

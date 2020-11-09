@@ -16,4 +16,6 @@
     <string name="add_new_task">Add new Task</string>
     <string name="task_name">Task name</string>
     <string name="save">save</string>
+    <string name="day_checked">Day checked</string>
+    <string name="score">00</string>
 </resources>

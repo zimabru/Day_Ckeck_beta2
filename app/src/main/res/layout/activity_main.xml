@@ -7,12 +7,60 @@
     tools:context=".MainActivity">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="?attr/actionBarSize"
-        android:id="@+id/recycler_view"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/task_item" />
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:title="@string/app_name">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/dayscore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:paddingBottom="0dp"
+                    android:alpha="1"
+                    android:text="@string/score"
+                    android:textSize="170sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dayscore"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/day_checked"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    android:theme="@android:style/Theme.Black.NoTitleBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_task"
@@ -22,19 +70,14 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_custom" />
 
-    <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
-            android:theme="@android:style/Theme.Black.NoTitleBar"
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-    </com.google.android.material.appbar.AppBarLayout>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/task_item" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

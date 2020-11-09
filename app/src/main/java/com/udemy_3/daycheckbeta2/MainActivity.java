@@ -17,11 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final int ADD_NOTE_REQUEST = 1;
     public static final int EDIT_NOTE_REQUEST = 2;
     private TaskViewModel taskViewModel;
+
 
 
     @Override
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         FloatingActionButton fab = findViewById(R.id.fab_add_task);
         fab.setOnClickListener(this);
+
 
 
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
@@ -110,12 +114,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
             String name = data.getStringExtra(Add_Edit_Task.EXTRA_TASK_NAME);
             String time = data.getStringExtra(Add_Edit_Task.EXTRA_TASK_TIME);
+            String COLOR = data.getStringExtra(Add_Edit_Task.EXTRA_COLOR);
 
             Task task = new Task();
             task.setNameTask(name);
             task.setTimeTask(time);
+            task.setColor(COLOR);
 
             taskViewModel.insert(task);
+            Log.d("COLOR", "onActivityResult: "+ COLOR);
 
             Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
@@ -127,13 +134,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             String nameUp = data.getStringExtra(Add_Edit_Task.EXTRA_TASK_NAME);
             String time = data.getStringExtra(Add_Edit_Task.EXTRA_TASK_TIME);
+            String COLOR = data.getStringExtra((Add_Edit_Task.EXTRA_COLOR));
 
             Task task = new Task();
             task.setNameTask(nameUp);
             task.setTimeTask(time);
+            task.setColor(COLOR);
 
             task.setId(id);
-
             taskViewModel.update(task);
 
 
@@ -156,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.delete_all_task:
                 taskViewModel.deleteAll();
-                Toast.makeText(this, "All task delete", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "All task delete", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
