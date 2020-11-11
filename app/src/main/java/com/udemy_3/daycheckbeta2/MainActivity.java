@@ -4,26 +4,31 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.udemy_3.daycheckbeta2.ROOM.TaskViewModel;
+import com.udemy_3.daycheckbeta2.ROOM.Tables.Day;
+import com.udemy_3.daycheckbeta2.ROOM.Tables.Task;
+import com.udemy_3.daycheckbeta2.ViewModel.DayViewModel;
+import com.udemy_3.daycheckbeta2.ViewModel.StatisticViewModel;
+import com.udemy_3.daycheckbeta2.ViewModel.TaskViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -32,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final int ADD_NOTE_REQUEST = 1;
     public static final int EDIT_NOTE_REQUEST = 2;
     private TaskViewModel taskViewModel;
-
+    private DayViewModel dayViewModel;
+    private StatisticViewModel statisticViewModel;
+    private ViewModelStoreOwner ViewModelStoreOwner;
 
 
     @Override
@@ -67,6 +74,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         });
+
+
+        dayViewModel.getTheDay().observe(this, new Observer<List<Day>>() {
+            @Override
+            public void onChanged(List<Day> days) {
+            }
+        });
+
+
+
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -88,8 +105,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra(Add_Edit_Task.EXTRA_TASK_NAME, task.getNameTask());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
                 Log.d("MainActivity", "onItemClick: "+ task.getId());
-
-
             }
         });
 

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.udemy_3.daycheckbeta2.ROOM.Tables.Task;
+
 
 public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
 

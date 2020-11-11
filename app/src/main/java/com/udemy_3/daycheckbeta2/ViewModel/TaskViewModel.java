@@ -1,4 +1,4 @@
-package com.udemy_3.daycheckbeta2.ROOM;
+package com.udemy_3.daycheckbeta2.ViewModel;
 
 import android.app.Application;
 
@@ -6,7 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.udemy_3.daycheckbeta2.Task;
+import com.udemy_3.daycheckbeta2.ROOM.REPOSITORIES.Repository;
+import com.udemy_3.daycheckbeta2.ROOM.Tables.Task;
 
 import java.util.List;
 

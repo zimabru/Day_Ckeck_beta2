@@ -1,11 +1,13 @@
-package com.udemy_3.daycheckbeta2.ROOM;
+package com.udemy_3.daycheckbeta2.ROOM.REPOSITORIES;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import com.udemy_3.daycheckbeta2.Task;
+import com.udemy_3.daycheckbeta2.ROOM.Dao.TaskDao;
+import com.udemy_3.daycheckbeta2.ROOM.Tables.Task;
+import com.udemy_3.daycheckbeta2.ROOM.TaskDatabase;
 
 import java.util.List;
 

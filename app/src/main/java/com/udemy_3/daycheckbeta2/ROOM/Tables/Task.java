@@ -1,4 +1,4 @@
-package com.udemy_3.daycheckbeta2;
+package com.udemy_3.daycheckbeta2.ROOM.Tables;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
