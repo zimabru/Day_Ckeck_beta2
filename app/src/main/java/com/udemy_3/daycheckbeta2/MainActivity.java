@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void principe() {
         Day day= Day.getDay(MainActivity.this);
 
-        day
+        
         Log.d("principe", "principe: "+ day.getId_day()+ " "+ day.getNumTaskChecked()+" "+ day.getNumberTask()+" "+ day.getDayChecked());
     }
 
