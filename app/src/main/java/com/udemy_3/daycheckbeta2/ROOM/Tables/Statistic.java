@@ -1,13 +1,22 @@
 package com.udemy_3.daycheckbeta2.ROOM.Tables;
 
 
+import android.content.Context;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Statistic_table")
 public class Statistic{
+    private static Statistic INSTANCE =null;
 
+    public static synchronized Statistic getInstance(Context context){
+        if(INSTANCE== null){
+            INSTANCE = new Statistic();
+        }
+        return INSTANCE;
+    }
 
     public void setId_count(int id_count) {
         this.id_count = id_count;

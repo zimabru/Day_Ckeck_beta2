@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "task_table")
 public class Task {
 
@@ -20,6 +22,24 @@ public class Task {
     @ColumnInfo(name ="color_task")
     private String Color;
 
+
+    @ColumnInfo(name ="checked_task")
+    private boolean checkedTask;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Task)) return false;
+        Task task = (Task) o;
+        return getId() == task.getId() &&
+                Objects.equals(getNameTask(), task.getNameTask()) &&
+                Objects.equals(getTimeTask(), task.getTimeTask());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getNameTask(), getTimeTask());
+    }
 
     public Task() {
     }
@@ -60,6 +80,13 @@ public class Task {
         return timeTask;
     }
 
+    public boolean isCheckedTask() {
+        return checkedTask;
+    }
+
+    public void setCheckedTask(boolean checkedTask) {
+        this.checkedTask = checkedTask;
+    }
 
 
 }

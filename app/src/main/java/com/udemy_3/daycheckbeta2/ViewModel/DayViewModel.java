@@ -2,22 +2,22 @@ package com.udemy_3.daycheckbeta2.ViewModel;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelStore;
-import androidx.lifecycle.ViewModelStoreOwner;
+
 
 import com.udemy_3.daycheckbeta2.ROOM.REPOSITORIES.Repository_Day;
 import com.udemy_3.daycheckbeta2.ROOM.Tables.Day;
 
 import java.util.List;
 
-public class DayViewModel implements ViewModelStoreOwner {
+public class DayViewModel extends AndroidViewModel {
     private Repository_Day repository_day;
     private LiveData<List<Day>> theDay;
 
     public DayViewModel(Application application){
-
+        super(application);
         repository_day = new Repository_Day(application);
         theDay = repository_day.getTheDay();
     }
@@ -38,6 +38,7 @@ public class DayViewModel implements ViewModelStoreOwner {
     public  LiveData<List<Day>> getTheDay(){
         return theDay;
     }
+
 
 
 }

@@ -50,8 +50,9 @@
                 android:id="@+id/checkbox"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:checked="false"
                 android:layout_alignParentEnd="true"
-                android:layout_toStartOf="@+id/task"
+                android:layout_toStartOf="@+id/task_from_row"
                 android:background="?android:attr/listChoiceIndicatorMultiple"
                 android:button="@null" />
 

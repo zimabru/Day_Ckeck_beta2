@@ -1,5 +1,6 @@
 package com.udemy_3.daycheckbeta2;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -16,14 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.udemy_3.daycheckbeta2.ROOM.Tables.Task;
 
 
-public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
-
-
+public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> implements View.OnClickListener {
     private OnItemClickListener listener;
+    private Context context;
 
-    public TaskAdapter() {
+    public TaskAdapter(Context context) {
         super(DIFF_CALLBACK);
+        this.context = context;
     }
+
     private static final DiffUtil.ItemCallback<Task> DIFF_CALLBACK = new DiffUtil.ItemCallback<Task>() {
         @Override
         public boolean areItemsTheSame(@NonNull Task oldItem, @NonNull Task newItem) {
@@ -47,25 +50,33 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
-        Task currentTask = getItem(position);//le truc parfait
-
+    public void onBindViewHolder(@NonNull final TaskHolder holder, int position) {
+       Task currentTask = getItem(position);//le truc parfait
         holder.taskName.setText(currentTask.getNameTask());
         holder.relativeLayoutForChange.setBackgroundColor(Color.parseColor(currentTask.getColor()));
-    }
+        if(currentTask.isCheckedTask()){
+            holder.checkBox.setChecked(true);
+        }
+
+}
+
+
 
 
     public Task getTaskAt(int position) {
         return getItem(position);
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
+
+
     class TaskHolder extends RecyclerView.ViewHolder {
-        private TextView taskName;
-        private CheckBox checkBox;
-
+        public TextView taskName;
+        public CheckBox checkBox;
         public RelativeLayout relativeLayoutForChange;
-        private String color;
-
 
 
         public TaskHolder(@NonNull View itemView) {
@@ -73,8 +84,6 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
             taskName = itemView.findViewById(R.id.task_from_row);
             checkBox = itemView.findViewById(R.id.checkbox);
             relativeLayoutForChange = itemView.findViewById(R.id.relative_layout);
-
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -85,15 +94,40 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
 
                 }
             });
+
+
+
+            checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   int position = getAdapterPosition();
+                   if (listener != null && position != RecyclerView.NO_POSITION) {
+                       if(checkBox.isChecked()){
+                           listener.onChecked(getItem(position), true);
+
+                       }else{
+                           listener.onChecked(getItem(position), false);
+                       }
+
+                    }
+
+                }
+            });
+
         }
+
+
+
     }
 
     public interface OnItemClickListener {
         void onItemClick(Task task);
+        void onChecked(Task task, boolean ischecked);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
+
 
     }
 }

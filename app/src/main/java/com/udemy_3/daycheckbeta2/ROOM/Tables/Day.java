@@ -1,5 +1,7 @@
 package com.udemy_3.daycheckbeta2.ROOM.Tables;
 
+import android.content.Context;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,15 +9,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "day_table")
 public class Day {
 
-
-
     @PrimaryKey(autoGenerate= true)
     private int id_day;
 
     @ColumnInfo(name ="number_task")
     private int numberTask;
-
-
 
     @ColumnInfo(name="time_day")
     private String timeDay;
@@ -23,11 +21,35 @@ public class Day {
     @ColumnInfo(name="num_task_checked")
     private int numTaskChecked;
 
-    @ColumnInfo(name="Day_checked")
+    @ColumnInfo(name="Day_checked", defaultValue = "false")
     private boolean DayChecked;
+
+
+
+    @ColumnInfo(name="Day_Time")
+    private String DayTime;
+
+    private static Day INSTANCE = null;
+
+    public static synchronized  Day getDay(Context context){
+        if(INSTANCE== null){
+            INSTANCE= new Day();
+        }
+        return INSTANCE;
+    }
 
     public Day() {
     }
+
+    public String getDayTime() {
+        return DayTime;
+    }
+
+    public void setDayTime(String dayTime) {
+        DayTime = dayTime;
+    }
+
+
     public void setId_day(int id_day) {
         this.id_day = id_day;
     }
@@ -68,4 +90,6 @@ public class Day {
     public void setDayChecked(boolean dayChecked) {
         DayChecked = dayChecked;
     }
+
+
 }

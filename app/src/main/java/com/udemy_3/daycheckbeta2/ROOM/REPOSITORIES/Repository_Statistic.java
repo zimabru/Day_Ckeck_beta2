@@ -4,7 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.loader.content.AsyncTaskLoader;
+
 
 import com.udemy_3.daycheckbeta2.ROOM.Dao.StatisticDao;
 import com.udemy_3.daycheckbeta2.ROOM.Tables.Statistic;

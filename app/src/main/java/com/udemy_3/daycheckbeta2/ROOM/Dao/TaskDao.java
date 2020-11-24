@@ -25,7 +25,7 @@ public interface TaskDao {
     @Update
     int update(Task task);
 
-    @Query("SELECT *FROM task_table ORDER BY id DESC")
+    @Query("SELECT *FROM task_table ORDER BY color_task DESC, id DESC")
     LiveData<List<Task>> getAllTasks();
 
 
